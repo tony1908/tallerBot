@@ -15,12 +15,12 @@ app.get('/', function(req, res) {
 
  
 botly.on("message", (senderId, message, data) => {
+	console.log(data)
 	console.log("estoy dentro")
-    let text = `echo: ${data.text}`;
  
     botly.sendText({
       id: senderId,
-      text: text
+      text: "holax"
     });
 });
  

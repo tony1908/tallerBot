@@ -38,6 +38,15 @@ botly.on("message", (senderId, message, data) => {
 
 
 });
+
+botly.on("postback", (sender, message, postback, ref) => {
+	console.log(postback)
+	console.log(ref)
+   	   botly.sendText({id: senderId, text: "Hi There!"}, function (err, data) {
+	    	console.log(data)
+		});
+
+});
  
 app.use("/webhook", botly.router());
 var server = app.listen(newPort, function () {

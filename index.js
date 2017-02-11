@@ -10,11 +10,12 @@ const botly = new Botly({
 });
 
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.send('Hola');
 });
 
  
 botly.on("message", (senderId, message, data) => {
+	console.log("estoy dentro")
     let text = `echo: ${data.text}`;
  
     botly.sendText({

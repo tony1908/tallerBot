@@ -15,14 +15,15 @@ app.get('/', function(req, res) {
 
  
 botly.on("message", (senderId, message, data) => {
+	console.log(message)
 	console.log(data)
 	console.log("estoy dentro")
     let text = `echo: ${data.text}`;
  
-    botly.sendText({
-      id: senderId,
-      text: text
-    });
+    botly.sendText({id: senderId, text: "Hi There!"}, function (err, data) {
+    	console.log(data)
+        //log it 
+	});
 });
  
 // const app = express();

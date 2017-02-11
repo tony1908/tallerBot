@@ -2,6 +2,7 @@ const express = require("express");
 const Botly = require("botly");
 const bodyParser = require('body-parser')
 const app = express();
+const DecisionTree = require('decision-tree');
 const newPort = process.env.PORT || 8080
 app.use(bodyParser.json())
 const botly = new Botly({
@@ -22,13 +23,22 @@ botly.on("message", (senderId, message, data) => {
 	console.log("estoy dentro")
     let text = `echo: ${data.text}`;
  
-    botly.sendText({id: senderId, text: "Hi There!"}, function (err, data) {
-    	console.log(data)
-        //log it 
+ //    botly.sendText({id: senderId, text: "Hi There!"}, function (err, data) {
+ //    	console.log(data)
+	// });
+
+
+	let buttons = [];
+	buttons.push(botly.createWebURLButton("Go to Askrround", "http://askrround.com"));
+	buttons.push(botly.createPostbackButton("Continue", "continue"));
+	botly.sendButtons({id: userId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
+	       console.log(data)
+
 	});
+
+
 });
  
-// const app = express();
 app.use("/webhook", botly.router());
 var server = app.listen(newPort, function () {
         var host = server.address().address;
@@ -36,4 +46,3 @@ var server = app.listen(newPort, function () {
 
         console.log('Web server started at http://%s:%s', host, port);
 });
-// app.listen(3000);

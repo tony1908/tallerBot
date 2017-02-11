@@ -31,7 +31,7 @@ botly.on("message", (senderId, message, data) => {
 	let buttons = [];
 	buttons.push(botly.createWebURLButton("Go to Askrround", "http://askrround.com"));
 	buttons.push(botly.createPostbackButton("Continue", "continue"));
-	botly.sendButtons({id: userId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
+	botly.sendButtons({id: senderId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
 	       console.log(data)
 
 	});

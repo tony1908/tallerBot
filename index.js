@@ -14,7 +14,7 @@ const botly = new Botly({
 
 var training_data = [
   {"ojos":"azul","nacionalidad":"mexicana","nombre":"Ana"},
-  {"ojos":"cafe","nacionalidad":"argentina","nombre":"Fernanda"},,
+  {"ojos":"cafe","nacionalidad":"argentina","nombre":"Fernanda"}, 
   {"ojos":"verde","nacionalidad":"chilena","nombre":"Diana"},
 ];
 

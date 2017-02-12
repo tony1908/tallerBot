@@ -58,18 +58,22 @@ botly.on("postback", (sender, message, postback, ref) => {
 	console.log(sender)
 	console.log("postback")
 	console.log(postback)
-	// console.log(ref)
-   	   botly.sendText({id: sender, text: "Hi There!"}, function (err, data) {
+
+	switch (postback) {
+   
+    case "azul":
+    	botly.sendText({id: senderId, text: "Tus ojos son como el mar"}, function (err, data) {
 	    	console.log(data)
 		});
-		
-		let buttons = [];
-		buttons.push(botly.createWebURLButton("Go to Askrround", "http://askrround.com"));
-		buttons.push(botly.createPostbackButton("Continue", "continue"));
-		botly.sendButtons({id: senderId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
-			console.log(data)
 
+        break;
+    case "cafe":
+    botly.sendText({id: senderId, text: "Son como un dona de chocolate"}, function (err, data) {
+	    	console.log(data)
 		});
+
+}
+
 
 });
  

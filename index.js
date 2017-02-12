@@ -62,20 +62,27 @@ botly.on("postback", (senderId, message, postback, ref) => {
 	switch (postback) {
    
     case "azul":
-    	botly.sendText({id: senderId, text: "Tus ojos son como el mar"}, function (err, data) {
-	    	console.log(data)
+    case "verde":
+    case "cafe":
+ 		
+ 		let buttons = [];
+	
+		buttons.push(botly.createPostbackButton("Azules", "azul"));
+		buttons.push(botly.createPostbackButton("Cafe", "cafe"));
+		buttons.push(botly.createPostbackButton("Verdes", "verde"));
+		botly.sendButtons({id: senderId, text: "De que color son tus ojos?", buttons: buttons}, function (err, data) {
+		       console.log(data)
+
 		});
 
         break;
-    case "cafe":
-    botly.sendText({id: senderId, text: "Son como un dona de chocolate"}, function (err, data) {
-	    	console.log(data)
-		});
 
-}
+	}
 
 
 });
+
+
  
 app.use("/webhook", botly.router());
 var server = app.listen(newPort, function () {

@@ -12,6 +12,18 @@ const botly = new Botly({
     notificationType: Botly.CONST.REGULAR //already the default (optional), 
 });
 
+var training_data = [
+  {"ojos":"azul","nacionalidad":"mexicana","nombre":"Ana"},
+  {"ojos":"cafe","nacionalidad":"argentina","nombre":"Fernanda"},,
+  {"ojos":"verde","nacionalidad":"chilena","nombre":"Diana"},
+];
+
+
+var features = ["ojos","nacionalidad"];
+var class_name = "nombre";
+
+var dt = new DecisionTree(training_data, class_name, features);
+
 app.get('/', function(req, res) {
   res.send('Hola');
 });
@@ -22,6 +34,7 @@ botly.on("message", (senderId, message, data) => {
 	console.log(data)
 	console.log("estoy dentro")
     let text = `echo: ${data.text}`;
+    // text = 'echo' + data.text;
  
  //    botly.sendText({id: senderId, text: "Hi There!"}, function (err, data) {
  //    	console.log(data)
@@ -29,8 +42,10 @@ botly.on("message", (senderId, message, data) => {
 
 
 	let buttons = [];
-	buttons.push(botly.createWebURLButton("Go to Askrround", "http://askrround.com"));
-	buttons.push(botly.createPostbackButton("Continue", "continue"));
+	
+	buttons.push(botly.createPostbackButton("Azules", "azul"));
+	buttons.push(botly.createPostbackButton("Cafe", "cafe"));
+	buttons.push(botly.createPostbackButton("Verdes", "verde"));
 	botly.sendButtons({id: senderId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
 	       console.log(data)
 
@@ -45,6 +60,14 @@ botly.on("postback", (sender, message, postback, ref) => {
 	// console.log(ref)
    	   botly.sendText({id: sender, text: "Hi There!"}, function (err, data) {
 	    	console.log(data)
+		});
+		
+		let buttons = [];
+		buttons.push(botly.createWebURLButton("Go to Askrround", "http://askrround.com"));
+		buttons.push(botly.createPostbackButton("Continue", "continue"));
+		botly.sendButtons({id: senderId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
+			console.log(data)
+
 		});
 
 });

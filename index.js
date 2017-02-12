@@ -46,7 +46,7 @@ botly.on("message", (senderId, message, data) => {
 	buttons.push(botly.createPostbackButton("Azules", "azul"));
 	buttons.push(botly.createPostbackButton("Cafe", "cafe"));
 	buttons.push(botly.createPostbackButton("Verdes", "verde"));
-	botly.sendButtons({id: senderId, text: "What do you want to do next?", buttons: buttons}, function (err, data) {
+	botly.sendButtons({id: senderId, text: "De que color son tus ojos?", buttons: buttons}, function (err, data) {
 	       console.log(data)
 
 	});
@@ -56,6 +56,7 @@ botly.on("message", (senderId, message, data) => {
 
 botly.on("postback", (sender, message, postback, ref) => {
 	console.log(sender)
+	console.log("postback")
 	console.log(postback)
 	// console.log(ref)
    	   botly.sendText({id: sender, text: "Hi There!"}, function (err, data) {

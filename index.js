@@ -67,15 +67,23 @@ botly.on("postback", (senderId, message, postback, ref) => {
  		
  		let buttons = [];
 	
-		buttons.push(botly.createPostbackButton("Azules", "azul"));
-		buttons.push(botly.createPostbackButton("Cafe", "cafe"));
-		buttons.push(botly.createPostbackButton("Verdes", "verde"));
-		botly.sendButtons({id: senderId, text: "De que color son tus ojos?", buttons: buttons}, function (err, data) {
+		buttons.push(botly.createPostbackButton("Mexa", "mexicana"));
+		buttons.push(botly.createPostbackButton("Argentina", "argentina"));
+		buttons.push(botly.createPostbackButton("Chile", "chilena"));
+		botly.sendButtons({id: senderId, text: "De donde vienes?", buttons: buttons}, function (err, data) {
 		       console.log(data)
 
 		});
 
         break;
+    case "mexicana":
+    case "argentina":
+    case "chilena":
+
+	    botly.sendText({id: senderId, text: "Tu nombre es:"}, function (err, data) {
+	    	console.log(data)
+		});
+
 
 	}
 

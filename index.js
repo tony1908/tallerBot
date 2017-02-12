@@ -54,7 +54,7 @@ botly.on("message", (senderId, message, data) => {
 
 });
 
-botly.on("postback", (sender, message, postback, ref) => {
+botly.on("postback", (senderId, message, postback, ref) => {
 	console.log(sender)
 	console.log("postback")
 	console.log(postback)

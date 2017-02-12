@@ -12,10 +12,7 @@ const botly = new Botly({
     notificationType: Botly.CONST.REGULAR //already the default (optional), 
 });
 
-var objetoConDatos = {
-		  	ojos: "azul",
-		  	nacionalidad: "mexicana"
-		  }
+var objetoConDatos = {}
 
 var training_data = [
   {"ojos":"azul","nacionalidad":"mexicana","nombre":"Ana"},
@@ -69,6 +66,8 @@ botly.on("postback", (senderId, message, postback, ref) => {
     case "azul":
     case "verde":
     case "cafe":
+
+    	objetoConDatos.ojos = postback;
  		
  		let buttons = [];
 	
@@ -85,13 +84,15 @@ botly.on("postback", (senderId, message, postback, ref) => {
     case "argentina":
     case "chilena":
 
+    	objetoConDatos.nacionalidad = postback;
+
     
 
     	var predicted_class = dt.predict(objetoConDatos);
 
     	console.log(predicted_class)
 
-	    botly.sendText({id: senderId, text: "Tu nombre es:"}, function (err, data) {
+	    botly.sendText({id: senderId, text: "Tu nombre es:"+predicted_class}, function (err, data) {
 	    	console.log(data)
 		});
 

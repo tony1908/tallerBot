@@ -80,6 +80,15 @@ botly.on("postback", (senderId, message, postback, ref) => {
     case "argentina":
     case "chilena":
 
+    var objetoConDatos = {
+		  	ojos: "azul",
+		  	nacionalidad: "mexicana"
+		  }
+
+    	var predicted_class = dt.predict(objetoConDatos);
+
+    	console.log(predicted_class)
+
 	    botly.sendText({id: senderId, text: "Tu nombre es:"}, function (err, data) {
 	    	console.log(data)
 		});
